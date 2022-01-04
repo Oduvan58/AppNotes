@@ -53,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        noteList.addAll(createNotesData());
 
         initRecycler();
     }
@@ -62,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         adapter = new NoteAdapter();
-        recyclerView.setAdapter(adapter);
         adapter.setData(noteList);
+        recyclerView.setAdapter(adapter);
     }
 }
