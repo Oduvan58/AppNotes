@@ -1,14 +1,15 @@
-package by.geekbrains.appnotes;
+package by.geekbrains.appnotes.ui;
 
 import android.content.Context;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+
+import by.geekbrains.appnotes.domain.NoteEntity;
 
 public class NoteAdapter extends RecyclerView.Adapter<NoteViewHolder> {
 

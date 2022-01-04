@@ -1,12 +1,15 @@
-package by.geekbrains.appnotes;
+package by.geekbrains.appnotes.ui;
+
+import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.os.Bundle;
-
 import java.util.ArrayList;
+
+import by.geekbrains.appnotes.R;
+import by.geekbrains.appnotes.domain.NoteEntity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -14,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
     private NoteAdapter adapter;
 
     private final ArrayList<NoteEntity> noteList = new ArrayList<>();
+
     private static ArrayList<NoteEntity> createNotesData() {
         final ArrayList<NoteEntity> noteEntities = new ArrayList<>();
         noteEntities.add(new NoteEntity(
