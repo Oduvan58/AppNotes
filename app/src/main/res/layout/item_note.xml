@@ -34,7 +34,7 @@
                 android:textSize="@dimen/text_size_title"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:text="Shop" />
+                tools:text="Title" />
 
             <TextView
                 android:id="@+id/description_text_view"

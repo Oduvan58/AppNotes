@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="default_margin_card_view">10dp</dimen>
+    <dimen name="default_margin_card_view">5dp</dimen>
     <dimen name="corner_radius_card_view">16dp</dimen>
-    <dimen name="elevation_card_view">8dp</dimen>
-    <dimen name="padding_card_view">8dp</dimen>
+    <dimen name="elevation_card_view">2dp</dimen>
+    <dimen name="padding_card_view">4dp</dimen>
     <dimen name="default_margin_bottom_views">10dp</dimen>
     <dimen name="padding_bottom_title">5dp</dimen>
     <dimen name="text_size_title">24sp</dimen>
     <dimen name="padding_bottom_description">30dp</dimen>
     <dimen name="text_size_description_date">18sp</dimen>
+    <dimen name="margin_add_note_button">20dp</dimen>
 </resources>
