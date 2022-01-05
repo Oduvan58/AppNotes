@@ -6,13 +6,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import by.geekbrains.appnotes.App;
 import by.geekbrains.appnotes.R;
 import by.geekbrains.appnotes.data.CacheNoteRepositoryImpl;
 import by.geekbrains.appnotes.domain.NoteRepository;
 
 public class MainActivity extends AppCompatActivity {
 
-    private final NoteRepository noteRepository = new CacheNoteRepositoryImpl();
+    private NoteRepository noteRepository;
     private RecyclerView recyclerView;
     private NoteAdapter adapter;
 
@@ -20,6 +21,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        noteRepository = App.get(this).getNoteRepo();
 
         initRecycler();
     }
