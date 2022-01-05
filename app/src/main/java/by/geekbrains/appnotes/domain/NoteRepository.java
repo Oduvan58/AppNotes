@@ -6,5 +6,5 @@ public interface NoteRepository {
 
     ArrayList<NoteEntity> getNotes();
 
-    void deleteNote(NoteEntity noteEntity);
+    void addNote(NoteEntity noteEntity);
 }

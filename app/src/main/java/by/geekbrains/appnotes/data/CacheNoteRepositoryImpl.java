@@ -1,5 +1,9 @@
 package by.geekbrains.appnotes.data;
 
+import android.view.View;
+import android.widget.Adapter;
+import android.widget.AdapterView;
+
 import java.util.ArrayList;
 
 import by.geekbrains.appnotes.domain.NoteEntity;
@@ -19,7 +23,7 @@ public class CacheNoteRepositoryImpl implements NoteRepository {
     }
 
     @Override
-    public void deleteNote(NoteEntity noteEntity) {
+    public void addNote(NoteEntity noteEntity) {
 
     }
 
@@ -57,4 +61,5 @@ public class CacheNoteRepositoryImpl implements NoteRepository {
         ));
         return noteEntities;
     }
+
 }

@@ -14,6 +14,6 @@ public class App extends Application {
     }
 
     public NoteRepository getNoteRepo() {
-        return null;
+        return noteRepository;
     }
 }

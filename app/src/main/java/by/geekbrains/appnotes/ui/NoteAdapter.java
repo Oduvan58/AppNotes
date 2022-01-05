@@ -14,6 +14,11 @@ import by.geekbrains.appnotes.domain.NoteEntity;
 public class NoteAdapter extends RecyclerView.Adapter<NoteViewHolder> {
 
     private ArrayList<NoteEntity> data = new ArrayList<>();
+    private OnNoteListener onNoteListener;
+
+    public void setOnNoteListener(OnNoteListener onNoteListener) {
+        this.onNoteListener = onNoteListener;
+    }
 
     public void setData(ArrayList<NoteEntity> noteList) {
         data = noteList;
@@ -24,7 +29,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteViewHolder> {
     @Override
     public NoteViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         final LayoutInflater inflater = (LayoutInflater) parent.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        return new NoteViewHolder(inflater, parent);
+        return new NoteViewHolder(inflater, parent, onNoteListener);
     }
 
     private NoteEntity getItem(int position) {
