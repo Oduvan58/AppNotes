@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import by.geekbrains.appnotes.App;
 import by.geekbrains.appnotes.R;
-import by.geekbrains.appnotes.data.CacheNoteRepositoryImpl;
 import by.geekbrains.appnotes.domain.NoteEntity;
 import by.geekbrains.appnotes.domain.NoteRepository;
 

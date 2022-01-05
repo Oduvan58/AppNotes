@@ -1,9 +1,5 @@
 package by.geekbrains.appnotes.data;
 
-import android.view.View;
-import android.widget.Adapter;
-import android.widget.AdapterView;
-
 import java.util.ArrayList;
 
 import by.geekbrains.appnotes.domain.NoteEntity;
