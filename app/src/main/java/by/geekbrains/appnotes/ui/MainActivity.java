@@ -44,4 +44,10 @@ public class MainActivity extends AppCompatActivity implements OnNoteListener {
         intent.putExtra(NoteActivity.NOTE_EXTRA_KEY, noteEntity);
         startActivity(intent);
     }
+
+    @Override
+    public void onDeleteNote(NoteEntity noteEntity) {
+        noteRepository.deleteNote(noteEntity.getId());
+        adapter.deleteNote(noteEntity.getId());
+    }
 }

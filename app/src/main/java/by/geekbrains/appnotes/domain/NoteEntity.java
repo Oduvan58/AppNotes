@@ -5,11 +5,13 @@ import android.os.Parcelable;
 
 public class NoteEntity implements Parcelable {
 
+    private String id;
     private String title;
     private String description;
     private String date;
 
-    public NoteEntity(String title, String description, String date) {
+    public NoteEntity(String id, String title, String description, String date) {
+        this.id = id;
         this.title = title;
         this.description = description;
         this.date = date;
@@ -35,6 +37,10 @@ public class NoteEntity implements Parcelable {
             return new NoteEntity[size];
         }
     };
+
+    public String getId() {
+        return id;
+    }
 
     public String getTitle() {
         return title;
