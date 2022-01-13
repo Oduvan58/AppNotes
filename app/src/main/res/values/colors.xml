@@ -10,4 +10,5 @@
     <color name="background_card_view">#C5F8F8</color>
     <color name="text_color_description_date">#605D5D</color>
     <color name="color_add_note_button">#EEFF41</color>
+    <color name="color_text_save_note_button">#3754F8</color>
 </resources>

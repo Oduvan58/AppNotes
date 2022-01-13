@@ -1,6 +1,8 @@
 package by.geekbrains.appnotes.ui;
 
 import android.os.Bundle;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,8 +14,9 @@ public class NoteActivity extends AppCompatActivity {
 
     public static final String NOTE_EXTRA_KEY = "show_note";
 
-    private TextView titleNoteTextView;
-    private TextView descriptionNoteTextView;
+    private EditText titleNoteEditText;
+    private EditText descriptionNoteEditText;
+    private Button saveNoteButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,12 +29,13 @@ public class NoteActivity extends AppCompatActivity {
     }
 
     private void initViews() {
-        titleNoteTextView = findViewById(R.id.title_note_text_view);
-        descriptionNoteTextView = findViewById(R.id.description_note_text_view);
+        titleNoteEditText = findViewById(R.id.title_note_edit_text);
+        descriptionNoteEditText = findViewById(R.id.description_note_edit_text);
+        saveNoteButton = findViewById(R.id.save_note_button);
     }
 
     private void getInfoNote(NoteEntity noteEntity) {
-        titleNoteTextView.setText(noteEntity.getTitle());
-        descriptionNoteTextView.setText(noteEntity.getDescription());
+        titleNoteEditText.setText(noteEntity.getTitle());
+        descriptionNoteEditText.setText(noteEntity.getDescription());
     }
 }

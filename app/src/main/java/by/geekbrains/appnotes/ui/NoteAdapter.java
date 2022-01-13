@@ -35,6 +35,10 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteViewHolder> {
         }
     }
 
+    public void addNote() {
+
+    }
+
     @NonNull
     @Override
     public NoteViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
