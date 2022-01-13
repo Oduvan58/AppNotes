@@ -8,5 +8,5 @@ public interface NoteRepository {
 
     void deleteNote(String id);
 
-//    void addNote();
+    void addNote(NoteEntity noteEntity);
 }

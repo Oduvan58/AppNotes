@@ -21,7 +21,8 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteViewHolder> {
     }
 
     public void setData(ArrayList<NoteEntity> noteList) {
-        data = noteList;
+        data.clear();
+        data.addAll(noteList);
         notifyDataSetChanged();
     }
 
@@ -35,8 +36,9 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteViewHolder> {
         }
     }
 
-    public void addNote() {
-
+    public void addNote(NoteEntity noteEntity) {
+        data.add(noteEntity);
+        notifyDataSetChanged();
     }
 
     @NonNull

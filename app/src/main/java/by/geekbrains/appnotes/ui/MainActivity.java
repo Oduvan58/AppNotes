@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity implements OnNoteListener {
         noteRepository = App.get(this).getNoteRepo();
 
         addButton = findViewById(R.id.add_note_button);
+
         initRecycler();
     }
 
@@ -59,7 +60,8 @@ public class MainActivity extends AppCompatActivity implements OnNoteListener {
     @Override
     public void onAddNote(NoteEntity noteEntity) {
         addButton.setOnClickListener(v -> {
-
+            noteRepository.addNote(noteEntity);
+            adapter.addNote(noteEntity);
         });
     }
 }

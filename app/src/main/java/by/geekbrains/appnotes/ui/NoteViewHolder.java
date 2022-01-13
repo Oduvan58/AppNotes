@@ -10,6 +10,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import by.geekbrains.appnotes.App;
 import by.geekbrains.appnotes.R;
 import by.geekbrains.appnotes.domain.NoteEntity;
@@ -35,6 +37,7 @@ public class NoteViewHolder extends RecyclerView.ViewHolder {
     public void bind(NoteEntity note) {
         itemView.setOnClickListener(v -> onNoteListener.onClickNote(note));
         deleteImageView.setOnClickListener(v -> onNoteListener.onDeleteNote(note));
+        onNoteListener.onAddNote(note);
 
         titleTextView.setText(note.getTitle());
         descriptionTextView.setText(note.getDescription());
