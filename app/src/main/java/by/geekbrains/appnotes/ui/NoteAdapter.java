@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 import by.geekbrains.appnotes.domain.NoteEntity;
 
@@ -37,7 +38,9 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteViewHolder> {
     }
 
     public void addNote(NoteEntity noteEntity) {
-        data.add(noteEntity);
+        data.add(new NoteEntity(UUID.randomUUID().toString(),
+                "Тема",
+                "Описание"));
         notifyDataSetChanged();
     }
 

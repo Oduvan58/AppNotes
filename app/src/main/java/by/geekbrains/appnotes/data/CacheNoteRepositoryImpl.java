@@ -31,7 +31,14 @@ public class CacheNoteRepositoryImpl implements NoteRepository {
 
     @Override
     public void addNote(NoteEntity noteEntity) {
-        cache.add(noteEntity);
+        cache.add(new NoteEntity(UUID.randomUUID().toString(),
+                "Тема",
+                "Описание"));
+    }
+
+    @Override
+    public void saveNote(NoteEntity noteEntity) {
+
     }
 
     private static ArrayList<NoteEntity> createNotesData() {
@@ -39,8 +46,7 @@ public class CacheNoteRepositoryImpl implements NoteRepository {
         noteEntities.add(new NoteEntity(
                 UUID.randomUUID().toString(),
                 "Тема",
-                "Описание",
-                ""
+                "Описание"
         ));
         return noteEntities;
     }

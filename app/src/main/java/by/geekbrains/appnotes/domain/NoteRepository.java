@@ -9,4 +9,6 @@ public interface NoteRepository {
     void deleteNote(String id);
 
     void addNote(NoteEntity noteEntity);
+
+    void saveNote(NoteEntity noteEntity);
 }

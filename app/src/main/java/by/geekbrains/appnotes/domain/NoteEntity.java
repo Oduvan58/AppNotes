@@ -10,11 +10,10 @@ public class NoteEntity implements Parcelable {
     private String description;
     private String date;
 
-    public NoteEntity(String id, String title, String description, String date) {
+    public NoteEntity(String id, String title, String description) {
         this.id = id;
         this.title = title;
         this.description = description;
-        this.date = date;
     }
 
     public NoteEntity() {
@@ -75,6 +74,6 @@ public class NoteEntity implements Parcelable {
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeString(title);
         parcel.writeString(description);
-        parcel.writeString(date);
+        parcel.writeString(String.valueOf(date));
     }
 }

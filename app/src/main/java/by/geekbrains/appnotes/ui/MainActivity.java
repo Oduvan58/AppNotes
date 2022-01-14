@@ -1,9 +1,10 @@
 package by.geekbrains.appnotes.ui;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Button;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,7 +16,8 @@ import by.geekbrains.appnotes.R;
 import by.geekbrains.appnotes.domain.NoteEntity;
 import by.geekbrains.appnotes.domain.NoteRepository;
 
-public class MainActivity extends AppCompatActivity implements OnNoteListener {
+public class MainActivity extends AppCompatActivity implements OnNoteListener, Constants {
+    private static final int NOTE_REQUEST_CODE = 28;
 
     private NoteRepository noteRepository;
     private RecyclerView recyclerView;
@@ -48,7 +50,16 @@ public class MainActivity extends AppCompatActivity implements OnNoteListener {
     public void onClickNote(NoteEntity noteEntity) {
         Intent intent = new Intent(this, NoteActivity.class);
         intent.putExtra(NoteActivity.NOTE_EXTRA_KEY, noteEntity);
-        startActivity(intent);
+        startActivityForResult(intent, NOTE_REQUEST_CODE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == NOTE_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+            data.getParcelableExtra(NOTE_EXTRA_KEY);
+            adapter.setData(noteRepository.getNotes());
+        }
     }
 
     @Override

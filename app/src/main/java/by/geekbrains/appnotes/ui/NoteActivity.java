@@ -1,19 +1,26 @@
 package by.geekbrains.appnotes.ui;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.UUID;
+
+import by.geekbrains.appnotes.App;
 import by.geekbrains.appnotes.R;
 import by.geekbrains.appnotes.domain.NoteEntity;
+import by.geekbrains.appnotes.domain.NoteRepository;
 
-public class NoteActivity extends AppCompatActivity {
+public class NoteActivity extends AppCompatActivity implements Constants {
 
-    public static final String NOTE_EXTRA_KEY = "show_note";
-
+//    public static final String NOTE_EXTRA_KEY = "show_note";
+    NoteRepository noteRepository;
+    NoteEntity noteEntity;
     private EditText titleNoteEditText;
     private EditText descriptionNoteEditText;
     private Button saveNoteButton;
@@ -23,9 +30,19 @@ public class NoteActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_note);
 
+        noteRepository = App.get(this).getNoteRepo();
+
         initViews();
-        NoteEntity noteEntity = getIntent().getParcelableExtra(NOTE_EXTRA_KEY);
+        noteEntity = getIntent().getParcelableExtra(NOTE_EXTRA_KEY);
         getInfoNote(noteEntity);
+
+        saveNoteButton.setOnClickListener(v -> {
+            Intent intentIO = new Intent();
+            intentIO.putExtra(NOTE_EXTRA_KEY, getNote());
+            setResult(Activity.RESULT_OK, intentIO);
+            finish();
+
+        });
     }
 
     private void initViews() {
@@ -37,5 +54,13 @@ public class NoteActivity extends AppCompatActivity {
     private void getInfoNote(NoteEntity noteEntity) {
         titleNoteEditText.setText(noteEntity.getTitle());
         descriptionNoteEditText.setText(noteEntity.getDescription());
+    }
+
+    private NoteEntity getNote() {
+        String title = titleNoteEditText.getText().toString();
+        String description = descriptionNoteEditText.getText().toString();
+        noteEntity.setTitle(title);
+        noteEntity.setDescription(description);
+        return noteEntity;
     }
 }
