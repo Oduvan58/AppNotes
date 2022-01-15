@@ -30,8 +30,6 @@ public class NoteActivity extends AppCompatActivity implements Constants {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_note);
 
-        noteRepository = App.get(this).getNoteRepo();
-
         initViews();
         noteEntity = getIntent().getParcelableExtra(NOTE_EXTRA_KEY);
         getInfoNote(noteEntity);

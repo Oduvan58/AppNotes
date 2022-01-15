@@ -37,8 +37,15 @@ public class CacheNoteRepositoryImpl implements NoteRepository {
     }
 
     @Override
-    public void saveNote(NoteEntity noteEntity) {
-
+    public void saveNote(String id, NoteEntity noteEntity) {
+        for (int i = 0; i < cache.size(); i++) {
+            NoteEntity item = cache.get(i);
+            if (item.getId().equals(id)) {
+                item.setTitle(noteEntity.getTitle());
+                item.setDescription(noteEntity.getDescription());
+                return;
+            }
+        }
     }
 
     private static ArrayList<NoteEntity> createNotesData() {

@@ -44,6 +44,18 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteViewHolder> {
         notifyDataSetChanged();
     }
 
+    public void saveNote(String id, NoteEntity noteEntity) {
+        for (int i = 0; i < data.size(); i++) {
+            NoteEntity item = data.get(i);
+            if (item.getId().equals(id)) {
+                item.setTitle(noteEntity.getTitle());
+                item.setDescription(noteEntity.getDescription());
+                notifyDataSetChanged();
+                return;
+            }
+        }
+    }
+
     @NonNull
     @Override
     public NoteViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

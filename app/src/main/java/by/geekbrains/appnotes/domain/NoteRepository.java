@@ -10,5 +10,5 @@ public interface NoteRepository {
 
     void addNote(NoteEntity noteEntity);
 
-    void saveNote(NoteEntity noteEntity);
+    void saveNote(String id, NoteEntity noteEntity);
 }

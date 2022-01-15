@@ -1,5 +1,6 @@
 package by.geekbrains.appnotes.ui;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -29,7 +30,7 @@ public class MainActivity extends AppCompatActivity implements OnNoteListener, C
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        noteRepository = App.get(this).getNoteRepo();
+        noteRepository = App.get().noteRepository;
 
         addButton = findViewById(R.id.add_note_button);
 
@@ -41,7 +42,7 @@ public class MainActivity extends AppCompatActivity implements OnNoteListener, C
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         adapter = new NoteAdapter();
-        adapter.setData(noteRepository.getNotes());
+        adapter.setData(App.get().noteRepository.getNotes());
         adapter.setOnNoteListener(this);
         recyclerView.setAdapter(adapter);
     }
@@ -57,8 +58,9 @@ public class MainActivity extends AppCompatActivity implements OnNoteListener, C
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == NOTE_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
-            data.getParcelableExtra(NOTE_EXTRA_KEY);
-            adapter.setData(noteRepository.getNotes());
+            NoteEntity noteEntity = data.getParcelableExtra(NOTE_EXTRA_KEY);
+            noteRepository.saveNote(noteEntity.getId(), noteEntity);
+            adapter.saveNote(noteEntity.getId(), noteEntity);
         }
     }
 
