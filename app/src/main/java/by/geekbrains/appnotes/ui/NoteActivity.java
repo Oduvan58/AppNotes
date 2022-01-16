@@ -3,22 +3,18 @@ package by.geekbrains.appnotes.ui;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.UUID;
-
-import by.geekbrains.appnotes.App;
 import by.geekbrains.appnotes.R;
 import by.geekbrains.appnotes.domain.NoteEntity;
 import by.geekbrains.appnotes.domain.NoteRepository;
 
 public class NoteActivity extends AppCompatActivity implements Constants {
 
-//    public static final String NOTE_EXTRA_KEY = "show_note";
+    //    public static final String NOTE_EXTRA_KEY = "show_note";
     NoteRepository noteRepository;
     NoteEntity noteEntity;
     private EditText titleNoteEditText;

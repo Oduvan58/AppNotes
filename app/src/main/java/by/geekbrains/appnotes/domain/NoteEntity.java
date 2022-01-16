@@ -16,10 +16,8 @@ public class NoteEntity implements Parcelable {
         this.description = description;
     }
 
-    public NoteEntity() {
-    }
-
     protected NoteEntity(Parcel in) {
+        id = in.readString();
         title = in.readString();
         description = in.readString();
         date = in.readString();
@@ -72,6 +70,7 @@ public class NoteEntity implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(id);
         parcel.writeString(title);
         parcel.writeString(description);
         parcel.writeString(String.valueOf(date));
