@@ -1,4 +1,4 @@
-package by.geekbrains.appnotes.ui;
+package by.geekbrains.appnotes.ui.details;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -11,11 +11,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import by.geekbrains.appnotes.R;
 import by.geekbrains.appnotes.domain.NoteEntity;
 import by.geekbrains.appnotes.domain.NoteRepository;
+import by.geekbrains.appnotes.ui.Constants;
 
 public class NoteActivity extends AppCompatActivity implements Constants {
 
-    //    public static final String NOTE_EXTRA_KEY = "show_note";
-    NoteRepository noteRepository;
     NoteEntity noteEntity;
     private EditText titleNoteEditText;
     private EditText descriptionNoteEditText;
