@@ -1,4 +1,4 @@
-package by.geekbrains.appnotes.ui.main;
+package by.geekbrains.appnotes.ui.list;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -26,10 +26,15 @@ public class NotesListFragment extends Fragment {
     private RecyclerView recyclerView;
     private NoteAdapter adapter;
     private FloatingActionButton addButton;
+    private NoteEntity noteEntity = null;
 
     private Controller controller;
 
-    interface Controller {
+    public void onSaveNote(String noteId, NoteEntity noteEntity) {
+        adapter.setData(noteRepository.getNotes());
+    }
+
+    public interface Controller {
         void showNoteDetail(NoteEntity noteEntity);
     }
 
@@ -70,6 +75,8 @@ public class NotesListFragment extends Fragment {
             @Override
             public void onClickNote(NoteEntity noteEntity) {
                 controller.showNoteDetail(noteEntity);
+                noteRepository.saveNote(noteEntity.getId(), noteEntity);
+                adapter.saveNote(noteEntity.getId(), noteEntity);
             }
 
             @Override

@@ -1,5 +1,6 @@
 package by.geekbrains.appnotes.ui.details;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,14 +12,21 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import by.geekbrains.appnotes.App;
 import by.geekbrains.appnotes.R;
 import by.geekbrains.appnotes.domain.NoteEntity;
+import by.geekbrains.appnotes.ui.list.NotesListFragment;
 
 public class NoteFragment extends Fragment {
 
     private static final String NOTE_ARG_KEY = "NOTE_ARG_KEY";
 
-    NoteEntity noteEntity;
+    public interface Controller {
+        void onSaveNote(String noteId, NoteEntity noteEntity);
+    }
+
+    private Controller controller;
+    private NoteEntity noteEntity;
     private EditText titleNoteEditText;
     private EditText descriptionNoteEditText;
     private Button saveNoteButton;
@@ -32,6 +40,16 @@ public class NoteFragment extends Fragment {
         fragment.setArguments(bundle);
 
         return fragment;
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        if (context instanceof Controller) {
+            controller = (Controller) context;
+        } else {
+            throw new IllegalStateException("Activity must implement NoteFragment.Controller");
+        }
     }
 
     @Nullable
@@ -48,12 +66,10 @@ public class NoteFragment extends Fragment {
         noteEntity = getArguments().getParcelable(NOTE_ARG_KEY);
         getInfoNote(noteEntity);
 
-//        saveNoteButton.setOnClickListener(v -> {
-//            Intent intentIO = new Intent();
-//            intentIO.putExtra(NOTE_EXTRA_KEY, getNote());
-//            setResult(Activity.RESULT_OK, intentIO);
-//            finish();
-//        });
+        saveNoteButton.setOnClickListener(v -> {
+            App.get().noteRepository.saveNote(noteEntity.getId(), getNote());
+            controller.onSaveNote(noteEntity.getId(), noteEntity);
+        });
     }
 
     private void initViews(@NonNull View view) {
@@ -67,11 +83,11 @@ public class NoteFragment extends Fragment {
         descriptionNoteEditText.setText(noteEntity.getDescription());
     }
 
-//    private NoteEntity getNote() {
-//        String title = titleNoteEditText.getText().toString();
-//        String description = descriptionNoteEditText.getText().toString();
-//        noteEntity.setTitle(title);
-//        noteEntity.setDescription(description);
-//        return noteEntity;
-//    }
+    private NoteEntity getNote() {
+        String title = titleNoteEditText.getText().toString();
+        String description = descriptionNoteEditText.getText().toString();
+        noteEntity.setTitle(title);
+        noteEntity.setDescription(description);
+        return noteEntity;
+    }
 }

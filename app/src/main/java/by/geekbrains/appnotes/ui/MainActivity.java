@@ -1,4 +1,4 @@
-package by.geekbrains.appnotes.ui.main;
+package by.geekbrains.appnotes.ui;
 
 import android.os.Bundle;
 
@@ -8,8 +8,13 @@ import androidx.fragment.app.Fragment;
 import by.geekbrains.appnotes.R;
 import by.geekbrains.appnotes.domain.NoteEntity;
 import by.geekbrains.appnotes.ui.details.NoteFragment;
+import by.geekbrains.appnotes.ui.list.NotesListFragment;
 
-public class MainActivity extends AppCompatActivity implements NotesListFragment.Controller {
+public class MainActivity
+        extends AppCompatActivity
+        implements NotesListFragment.Controller, NoteFragment.Controller {
+
+    private static final String TAG_LIST_FRAGMENT = "TAG_LIST_FRAGMENT";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,7 +25,7 @@ public class MainActivity extends AppCompatActivity implements NotesListFragment
             Fragment notesListFragment = new NotesListFragment();
             getSupportFragmentManager()
                     .beginTransaction()
-                    .add(R.id.activity_main__fragment_container, notesListFragment)
+                    .add(R.id.activity_main__fragment_container, notesListFragment, TAG_LIST_FRAGMENT)
                     .commit();
         }
     }
@@ -33,5 +38,14 @@ public class MainActivity extends AppCompatActivity implements NotesListFragment
                 .add(R.id.activity_main__fragment_container, noteFragment)
                 .addToBackStack(null)
                 .commit();
+    }
+
+    @Override
+    public void onSaveNote(String noteId, NoteEntity noteEntity) {
+        getSupportFragmentManager().popBackStack();
+        NotesListFragment notesListFragment = (NotesListFragment) getSupportFragmentManager().findFragmentByTag(TAG_LIST_FRAGMENT);
+        if (notesListFragment == null)
+            throw new IllegalStateException("NotesListFragment not on screen");
+        notesListFragment.onSaveNote(noteId, noteEntity);
     }
 }

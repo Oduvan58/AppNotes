@@ -1,4 +1,4 @@
-package by.geekbrains.appnotes.ui.main;
+package by.geekbrains.appnotes.ui.list;
 
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
