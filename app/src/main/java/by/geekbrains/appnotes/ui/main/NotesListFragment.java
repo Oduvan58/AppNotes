@@ -1,6 +1,6 @@
 package by.geekbrains.appnotes.ui.main;
 
-import android.content.Intent;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,7 +19,6 @@ import by.geekbrains.appnotes.R;
 import by.geekbrains.appnotes.domain.NoteEntity;
 import by.geekbrains.appnotes.domain.NoteRepository;
 import by.geekbrains.appnotes.ui.OnNoteListener;
-import by.geekbrains.appnotes.ui.details.NoteActivity;
 
 public class NotesListFragment extends Fragment {
 
@@ -27,6 +26,22 @@ public class NotesListFragment extends Fragment {
     private RecyclerView recyclerView;
     private NoteAdapter adapter;
     private FloatingActionButton addButton;
+
+    private Controller controller;
+
+    interface Controller {
+        void showNoteDetail(NoteEntity noteEntity);
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        if (context instanceof Controller) {
+            controller = (Controller) context;
+        } else {
+            throw new IllegalStateException("Activity must implement NotesListFragment.Controller");
+        }
+    }
 
     @Nullable
     @Override
@@ -54,21 +69,8 @@ public class NotesListFragment extends Fragment {
         adapter.setOnNoteListener(new OnNoteListener() {
             @Override
             public void onClickNote(NoteEntity noteEntity) {
-                Intent intent = new Intent(getContext(), NoteActivity.class);
-                intent.putExtra(NoteActivity.NOTE_EXTRA_KEY, noteEntity);
-                startActivity(intent);
-//                startActivityForResult(intent, Constants.NOTE_EXTRA_KEY);
+                controller.showNoteDetail(noteEntity);
             }
-
-//            @Override
-//            protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-//                super.onActivityResult(requestCode, resultCode, data);
-//                if (requestCode == Constants.NOTE_EXTRA_KEY && resultCode == Activity.RESULT_OK) {
-//                    NoteEntity noteEntity = data.getParcelableExtra(Constants.NOTE_EXTRA_KEY);
-//                    noteRepository.saveNote(noteEntity.getId(), noteEntity);
-//                    adapter.saveNote(noteEntity.getId(), noteEntity);
-//                }
-//            }
 
             @Override
             public void onDeleteNote(NoteEntity noteEntity) {

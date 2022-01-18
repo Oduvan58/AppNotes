@@ -11,9 +11,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppNotes">
         <activity
-            android:name=".ui.details.NoteActivity"
-            android:exported="true" />
-        <activity
             android:name=".ui.main.MainActivity"
             android:exported="true">
             <intent-filter>
