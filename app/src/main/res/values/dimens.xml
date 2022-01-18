@@ -10,8 +10,11 @@
     <dimen name="padding_bottom_description">30dp</dimen>
     <dimen name="text_size_description_date">18sp</dimen>
     <dimen name="margin_add_note_button">20dp</dimen>
-    <dimen name="title_note_margin_start">15dp</dimen>
+    <dimen name="default_note_margin_start">15dp</dimen>
     <dimen name="title_note_padding_bottom">25dp</dimen>
     <dimen name="title_note_text_size">32sp</dimen>
     <dimen name="description_note_text_size">26sp</dimen>
+    <dimen name="size_image_view">36dp</dimen>
+    <dimen name="margin_end_image_view">24dp</dimen>
+    <dimen name="margin_bottom_save_note_button">24dp</dimen>
 </resources>

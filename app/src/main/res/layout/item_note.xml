@@ -27,11 +27,11 @@
                 android:id="@+id/title_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textStyle="italic"
                 android:layout_marginBottom="@dimen/default_margin_bottom_views"
                 android:paddingBottom="@dimen/padding_bottom_title"
                 android:textColor="@color/black"
                 android:textSize="@dimen/text_size_title"
+                android:textStyle="italic"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="Title" />
@@ -56,6 +56,18 @@
                 app:layout_constraintStart_toStartOf="@id/description_text_view"
                 app:layout_constraintTop_toBottomOf="@id/description_text_view"
                 tools:text="04.01.2022" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/delete_image_view"
+                android:layout_width="@dimen/size_image_view"
+                android:layout_height="@dimen/size_image_view"
+                android:layout_marginEnd="@dimen/margin_end_image_view"
+                android:clickable="true"
+                android:focusable="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_baseline_delete" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

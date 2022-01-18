@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 import by.geekbrains.appnotes.domain.NoteEntity;
 
@@ -21,8 +22,38 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteViewHolder> {
     }
 
     public void setData(ArrayList<NoteEntity> noteList) {
-        data = noteList;
+        data.clear();
+        data.addAll(noteList);
         notifyDataSetChanged();
+    }
+
+    public void deleteNote(String noteId) {
+        for (int i = 0; i < data.size(); i++) {
+            if (data.get(i).getId().equals(noteId)) {
+                data.remove(i);
+                notifyItemRemoved(i);
+                return;
+            }
+        }
+    }
+
+    public void addNote(NoteEntity noteEntity) {
+        data.add(new NoteEntity(UUID.randomUUID().toString(),
+                "Тема",
+                "Описание"));
+        notifyDataSetChanged();
+    }
+
+    public void saveNote(String id, NoteEntity noteEntity) {
+        for (int i = 0; i < data.size(); i++) {
+            NoteEntity item = data.get(i);
+            if (item.getId().equals(id)) {
+                item.setTitle(noteEntity.getTitle());
+                item.setDescription(noteEntity.getDescription());
+                notifyDataSetChanged();
+                return;
+            }
+        }
     }
 
     @NonNull

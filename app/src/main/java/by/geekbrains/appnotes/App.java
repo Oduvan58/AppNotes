@@ -1,19 +1,21 @@
 package by.geekbrains.appnotes;
 
 import android.app.Application;
-import android.content.Context;
 
 import by.geekbrains.appnotes.data.CacheNoteRepositoryImpl;
 import by.geekbrains.appnotes.domain.NoteRepository;
 
 public class App extends Application {
-    private NoteRepository noteRepository = new CacheNoteRepositoryImpl();
+    private static App sInstance;
+    public final NoteRepository noteRepository = new CacheNoteRepositoryImpl();
 
-    public static App get(Context context) {
-        return (App) context.getApplicationContext();
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        sInstance = this;
     }
 
-    public NoteRepository getNoteRepo() {
-        return noteRepository;
+    public static App get() {
+        return sInstance;
     }
 }

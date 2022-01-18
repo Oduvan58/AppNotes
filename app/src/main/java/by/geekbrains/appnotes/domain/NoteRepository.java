@@ -6,5 +6,9 @@ public interface NoteRepository {
 
     ArrayList<NoteEntity> getNotes();
 
+    void deleteNote(String id);
+
     void addNote(NoteEntity noteEntity);
+
+    void saveNote(String id, NoteEntity noteEntity);
 }

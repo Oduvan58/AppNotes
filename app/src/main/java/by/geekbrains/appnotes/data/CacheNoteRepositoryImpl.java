@@ -1,6 +1,7 @@
 package by.geekbrains.appnotes.data;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 import by.geekbrains.appnotes.domain.NoteEntity;
 import by.geekbrains.appnotes.domain.NoteRepository;
@@ -19,43 +20,41 @@ public class CacheNoteRepositoryImpl implements NoteRepository {
     }
 
     @Override
-    public void addNote(NoteEntity noteEntity) {
+    public void deleteNote(String id) {
+        for (int i = 0; i < cache.size(); i++) {
+            if (cache.get(i).getId().equals(id)) {
+                cache.remove(i);
+                return;
+            }
+        }
+    }
 
+    @Override
+    public void addNote(NoteEntity noteEntity) {
+        cache.add(new NoteEntity(UUID.randomUUID().toString(),
+                "Тема",
+                "Описание"));
+    }
+
+    @Override
+    public void saveNote(String id, NoteEntity noteEntity) {
+        for (int i = 0; i < cache.size(); i++) {
+            NoteEntity item = cache.get(i);
+            if (item.getId().equals(id)) {
+                item.setTitle(noteEntity.getTitle());
+                item.setDescription(noteEntity.getDescription());
+                return;
+            }
+        }
     }
 
     private static ArrayList<NoteEntity> createNotesData() {
         final ArrayList<NoteEntity> noteEntities = new ArrayList<>();
         noteEntities.add(new NoteEntity(
-                "Shop",
-                "Milk, juice, bread",
-                "04.01.2022"
-        ));
-        noteEntities.add(new NoteEntity(
-                "Meetings",
-                "Mother, brother, wife",
-                "07.01.2022"
-        ));
-        noteEntities.add(new NoteEntity(
-                "Travel",
-                "Spain, Germany, China",
-                "28.05.2022"
-        ));
-        noteEntities.add(new NoteEntity(
-                "Repair",
-                "Car, house, watch",
-                "10.03.2022"
-        ));
-        noteEntities.add(new NoteEntity(
-                "Job",
-                "Write a report, pass a test",
-                "19.01.2022"
-        ));
-        noteEntities.add(new NoteEntity(
-                "Investment",
-                "Bitcoin, tokens, stocks",
-                "24.04.2022"
+                UUID.randomUUID().toString(),
+                "Тема",
+                "Описание"
         ));
         return noteEntities;
     }
-
 }
