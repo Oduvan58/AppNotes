@@ -15,7 +15,6 @@ import androidx.fragment.app.Fragment;
 import by.geekbrains.appnotes.App;
 import by.geekbrains.appnotes.R;
 import by.geekbrains.appnotes.domain.NoteEntity;
-import by.geekbrains.appnotes.ui.list.NotesListFragment;
 
 public class NoteFragment extends Fragment {
 

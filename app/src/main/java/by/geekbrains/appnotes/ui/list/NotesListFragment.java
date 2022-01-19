@@ -31,7 +31,8 @@ public class NotesListFragment extends Fragment {
     private Controller controller;
 
     public void onSaveNote(String noteId, NoteEntity noteEntity) {
-        adapter.setData(noteRepository.getNotes());
+        noteRepository.saveNote(noteId, noteEntity);
+        adapter.saveNote(noteId, noteEntity);
     }
 
     public interface Controller {
@@ -75,8 +76,6 @@ public class NotesListFragment extends Fragment {
             @Override
             public void onClickNote(NoteEntity noteEntity) {
                 controller.showNoteDetail(noteEntity);
-                noteRepository.saveNote(noteEntity.getId(), noteEntity);
-                adapter.saveNote(noteEntity.getId(), noteEntity);
             }
 
             @Override
