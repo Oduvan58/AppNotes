@@ -1,6 +1,8 @@
 package by.geekbrains.appnotes.ui;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.FrameLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -20,12 +22,11 @@ public class MainActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         if (savedInstanceState == null) {
             Fragment notesListFragment = new NotesListFragment();
             getSupportFragmentManager()
                     .beginTransaction()
-                    .add(R.id.activity_main__fragment_container, notesListFragment, TAG_LIST_FRAGMENT)
+                    .replace(R.id.activity_main__main_fragment_container, notesListFragment, TAG_LIST_FRAGMENT)
                     .commit();
         }
     }
@@ -35,7 +36,7 @@ public class MainActivity
         Fragment noteFragment = NoteFragment.newInstance(noteEntity);
         getSupportFragmentManager()
                 .beginTransaction()
-                .add(R.id.activity_main__fragment_container, noteFragment)
+                .replace(R.id.activity_main__second_fragment_container, noteFragment)
                 .addToBackStack(null)
                 .commit();
     }
