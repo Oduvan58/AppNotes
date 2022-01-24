@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -68,6 +69,7 @@ public class NoteFragment extends Fragment {
         saveNoteButton.setOnClickListener(v -> {
             App.get().noteRepository.saveNote(noteEntity.getId(), getNote());
             controller.onSaveNote(noteEntity.getId(), noteEntity);
+            Toast.makeText(getContext(), "Note saved", Toast.LENGTH_SHORT).show();
         });
     }
 
