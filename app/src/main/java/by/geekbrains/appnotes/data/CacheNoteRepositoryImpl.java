@@ -22,7 +22,8 @@ public class CacheNoteRepositoryImpl implements NoteRepository {
     @Override
     public void deleteNote(String id) {
         for (int i = 0; i < cache.size(); i++) {
-            if (cache.get(i).getId().equals(id)) {
+            NoteEntity temp = cache.get(i);
+            if (temp.getId().equals(id)) {
                 cache.remove(i);
                 return;
             }
@@ -46,6 +47,11 @@ public class CacheNoteRepositoryImpl implements NoteRepository {
                 return;
             }
         }
+    }
+
+    @Override
+    public void getDeletedNote(NoteEntity noteEntity) {
+        cache.add(noteEntity);
     }
 
     private static ArrayList<NoteEntity> createNotesData() {

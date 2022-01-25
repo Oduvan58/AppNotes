@@ -30,12 +30,18 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteViewHolder> {
 
     public void deleteNote(String noteId) {
         for (int i = 0; i < data.size(); i++) {
-            if (data.get(i).getId().equals(noteId)) {
+            NoteEntity temp = data.get(i);
+            if (temp.getId().equals(noteId)) {
                 data.remove(i);
                 notifyItemRemoved(i);
                 return;
             }
         }
+    }
+
+    public void getDeletedNote(NoteEntity noteEntity) {
+        data.add(noteEntity);
+        notifyDataSetChanged();
     }
 
     public void addNote(NoteEntity noteEntity) {

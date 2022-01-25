@@ -1,10 +1,12 @@
 package by.geekbrains.appnotes.ui.list;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -13,6 +15,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.BaseTransientBottomBar;
+import com.google.android.material.snackbar.Snackbar;
 
 import by.geekbrains.appnotes.App;
 import by.geekbrains.appnotes.R;
@@ -82,6 +86,17 @@ public class NotesListFragment extends Fragment {
             public void onDeleteNote(NoteEntity noteEntity) {
                 noteRepository.deleteNote(noteEntity.getId());
                 adapter.deleteNote(noteEntity.getId());
+                final Snackbar snackbar = Snackbar.make(view, "Note deleted", Snackbar.LENGTH_LONG);
+                snackbar.setBackgroundTint(Color.BLUE);
+                snackbar.setTextColor(Color.YELLOW);
+                snackbar.setActionTextColor(Color.YELLOW);
+                snackbar.setAnimationMode(BaseTransientBottomBar.ANIMATION_MODE_FADE);
+                snackbar.setAction("Cancel", snackView -> {
+                    noteRepository.getDeletedNote(noteEntity);
+                    adapter.getDeletedNote(noteEntity);
+                    snackbar.dismiss();
+                });
+                snackbar.show();
             }
 
             @Override
@@ -89,6 +104,7 @@ public class NotesListFragment extends Fragment {
                 addButton.setOnClickListener(v -> {
                     noteRepository.addNote(noteEntity);
                     adapter.addNote(noteEntity);
+                    Toast.makeText(getContext(), "New note created", Toast.LENGTH_SHORT).show();
                 });
             }
         });
