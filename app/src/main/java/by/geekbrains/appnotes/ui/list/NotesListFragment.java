@@ -30,7 +30,6 @@ public class NotesListFragment extends Fragment {
     private RecyclerView recyclerView;
     private NoteAdapter adapter;
     private FloatingActionButton addButton;
-    private NoteEntity noteEntity = null;
 
     private Controller controller;
 
