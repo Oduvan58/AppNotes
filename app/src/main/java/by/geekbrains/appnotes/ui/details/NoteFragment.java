@@ -76,7 +76,7 @@ public class NoteFragment extends Fragment implements OnBackPressedListener {
         saveNoteButton.setOnClickListener(v -> {
             App.get().noteRepository.saveNote(noteEntity.getId(), getNote());
             controller.onSaveNote(noteEntity.getId(), noteEntity);
-            Toast.makeText(getContext(), "Note saved", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), R.string.text_save_note_toast, Toast.LENGTH_SHORT).show();
         });
     }
 

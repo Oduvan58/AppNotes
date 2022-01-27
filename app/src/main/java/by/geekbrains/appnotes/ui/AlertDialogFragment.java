@@ -33,7 +33,7 @@ public class AlertDialogFragment extends DialogFragment {
                     dialogInterface.dismiss();
                 })
                 .setNeutralButton(R.string.text_neutral_alert_dialog, (dialogInterface, i) -> {
-                    Toast.makeText(getContext(), "Нажмите ДА для выхода из редактора.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), R.string.text_help_alert_dialog, Toast.LENGTH_SHORT).show();
                 })
                 .setCancelable(false)
                 .create();

@@ -1,6 +1,8 @@
 package by.geekbrains.appnotes.ui.list;
 
+import android.app.Notification;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,6 +12,9 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.NotificationChannelCompat;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -22,9 +27,12 @@ import by.geekbrains.appnotes.App;
 import by.geekbrains.appnotes.R;
 import by.geekbrains.appnotes.domain.NoteEntity;
 import by.geekbrains.appnotes.domain.NoteRepository;
+import by.geekbrains.appnotes.ui.MainActivity;
 import by.geekbrains.appnotes.ui.OnNoteListener;
 
 public class NotesListFragment extends Fragment {
+    private static final String CHANNEL_ID = "channel for test";
+    private static final int NOTIFICATION_ID = 28;
 
     private NoteRepository noteRepository;
     private RecyclerView recyclerView;
@@ -67,6 +75,18 @@ public class NotesListFragment extends Fragment {
         addButton = view.findViewById(R.id.fragment_notes_list__add_note_button);
 
         initRecycler(view);
+
+        createNotificationChannels();
+    }
+
+    private void createNotificationChannels() {
+        final NotificationChannelCompat notificationChannel = new NotificationChannelCompat.Builder(
+                CHANNEL_ID,
+                NotificationManagerCompat.IMPORTANCE_MAX)
+                .setName("Notifications")
+                .setDescription("App messages")
+                .build();
+        NotificationManagerCompat.from(App.get()).createNotificationChannel(notificationChannel);
     }
 
     private void initRecycler(@NonNull View view) {
@@ -79,6 +99,14 @@ public class NotesListFragment extends Fragment {
             @Override
             public void onClickNote(NoteEntity noteEntity) {
                 controller.showNoteDetail(noteEntity);
+                final Notification notification = new NotificationCompat.Builder(App.get(), CHANNEL_ID)
+                        .setContentTitle(getString(R.string.text_title_notification))
+                        .setColorized(true)
+                        .setContentText(getString(R.string.text_description_notification))
+                        .setColor(Color.GREEN)
+                        .setSmallIcon(R.drawable.ic_baseline_edit_note_24)
+                        .build();
+                NotificationManagerCompat.from(App.get()).notify(NOTIFICATION_ID, notification);
             }
 
             @Override
@@ -103,7 +131,7 @@ public class NotesListFragment extends Fragment {
                 addButton.setOnClickListener(v -> {
                     noteRepository.addNote(noteEntity);
                     adapter.addNote(noteEntity);
-                    Toast.makeText(getContext(), "New note created", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), R.string.text_add_note_toast, Toast.LENGTH_SHORT).show();
                 });
             }
         });

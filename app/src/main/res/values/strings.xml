@@ -7,8 +7,13 @@
     <string name="text_positive_alert_dialog">Да</string>
     <string name="text_negative_alert_dialog">Нет</string>
     <string name="text_neutral_alert_dialog">Помощь</string>
+    <string name="text_save_note_toast">Заметка сохранена</string>
+    <string name="text_add_note_toast">Создана новая заметка</string>
+    <string name="text_help_alert_dialog">Нажмите "ДА" для выхода из редактора.</string>
+    <string name="text_description_notification">Вы находитесь в редакторе заметки</string>
     <string name="text_message_alert_dialog">Вы хотите выйти из редактирования? Заметка не будет сохранена.</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="text_title_notification">Информационное сообщение</string>
 </resources>
