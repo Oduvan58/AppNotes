@@ -6,6 +6,9 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
@@ -31,12 +34,14 @@ import by.geekbrains.appnotes.domain.NoteEntity;
 import by.geekbrains.appnotes.domain.NoteRepository;
 import by.geekbrains.appnotes.ui.MainActivity;
 import by.geekbrains.appnotes.ui.OnNoteListener;
+import by.geekbrains.appnotes.ui.details.AboutFragment;
 
 public class NotesListFragment extends Fragment {
     private static final String CHANNEL_ID = "channel for test";
     private static final int NOTIFICATION_ID = 28;
 
     private NoteRepository noteRepository;
+    private NoteEntity noteEntity;
     private RecyclerView recyclerView;
     private NoteAdapter adapter;
     private FloatingActionButton addButton;
@@ -65,6 +70,7 @@ public class NotesListFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        setHasOptionsMenu(true);
         return inflater.inflate(R.layout.fragment_notes_list, container, false);
     }
 
@@ -145,5 +151,35 @@ public class NotesListFragment extends Fragment {
         Toolbar toolbar = view.findViewById(R.id.fragment_notes_list__toolbar);
         ((AppCompatActivity) requireActivity()).setSupportActionBar(toolbar);
         setHasOptionsMenu(true);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        menu.clear();
+        inflater.inflate(R.menu.menu_fragment_notes_list, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_fragment_notes_list_about_app:
+                getActivity().getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.activity_main__about_fragment_container, new AboutFragment())
+                        .addToBackStack(null)
+                        .commit();
+                return true;
+            case R.id.menu_fragment_notes_list_exit:
+                getActivity().finish();
+                Toast.makeText(getContext(), R.string.text_exit_app_toast, Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.menu_fragment_notes_list_add_note:
+                noteRepository.addNote(noteEntity);
+                adapter.addNote(noteEntity);
+                Toast.makeText(getContext(), R.string.text_add_note_toast, Toast.LENGTH_SHORT).show();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

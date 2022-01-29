@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/menu_fragment_note_save_note"
+        android:icon="@drawable/ic_baseline_save_as_24"
+        android:title="@string/text_add_note_menu"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/menu_fragment_note_about_app"
+        android:title="@string/text_about_app_note_menu"
+        app:showAsAction="never" />
+
+</menu>

@@ -3,6 +3,9 @@ package by.geekbrains.appnotes.ui.details;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -64,6 +67,7 @@ public class NoteFragment extends Fragment implements OnBackPressedListener {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        setHasOptionsMenu(true);
         return inflater.inflate(R.layout.fragment_note, container, false);
     }
 
@@ -106,5 +110,30 @@ public class NoteFragment extends Fragment implements OnBackPressedListener {
         Toolbar toolbar = view.findViewById(R.id.fragment_note__toolbar);
         ((AppCompatActivity) requireActivity()).setSupportActionBar(toolbar);
         setHasOptionsMenu(true);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        menu.clear();
+        inflater.inflate(R.menu.menu_fragment_note, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_fragment_note_about_app:
+                getActivity().getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.activity_main__about_fragment_container, new AboutFragment())
+                        .addToBackStack(null)
+                        .commit();
+                return true;
+            case R.id.menu_fragment_note_save_note:
+                App.get().noteRepository.saveNote(noteEntity.getId(), getNote());
+                controller.onSaveNote(noteEntity.getId(), noteEntity);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
