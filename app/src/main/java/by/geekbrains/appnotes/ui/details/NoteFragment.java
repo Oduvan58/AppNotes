@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,10 +16,17 @@ import androidx.fragment.app.Fragment;
 import by.geekbrains.appnotes.App;
 import by.geekbrains.appnotes.R;
 import by.geekbrains.appnotes.domain.NoteEntity;
+import by.geekbrains.appnotes.ui.AlertDialogFragment;
+import by.geekbrains.appnotes.ui.OnBackPressedListener;
 
-public class NoteFragment extends Fragment {
+public class NoteFragment extends Fragment implements OnBackPressedListener {
 
     private static final String NOTE_ARG_KEY = "NOTE_ARG_KEY";
+
+    @Override
+    public void onBackPressed() {
+        new AlertDialogFragment().show(getChildFragmentManager(), AlertDialogFragment.DIALOG_FRAGMENT_TAG);
+    }
 
     public interface Controller {
         void onSaveNote(String noteId, NoteEntity noteEntity);
@@ -68,6 +76,7 @@ public class NoteFragment extends Fragment {
         saveNoteButton.setOnClickListener(v -> {
             App.get().noteRepository.saveNote(noteEntity.getId(), getNote());
             controller.onSaveNote(noteEntity.getId(), noteEntity);
+            Toast.makeText(getContext(), R.string.text_save_note_toast, Toast.LENGTH_SHORT).show();
         });
     }
 

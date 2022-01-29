@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import by.geekbrains.appnotes.R;
 import by.geekbrains.appnotes.domain.NoteEntity;
@@ -46,5 +47,22 @@ public class MainActivity
         if (notesListFragment == null)
             throw new IllegalStateException("NotesListFragment not on screen");
         notesListFragment.onSaveNote(noteId, noteEntity);
+    }
+
+    @Override
+    public void onBackPressed() {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        OnBackPressedListener onBackPressedListener = null;
+        for (Fragment fragment : fragmentManager.getFragments()) {
+            if (fragment instanceof OnBackPressedListener) {
+                onBackPressedListener = (OnBackPressedListener) fragment;
+                break;
+            }
+        }
+        if (onBackPressedListener != null) {
+            onBackPressedListener.onBackPressed();
+        } else {
+            super.onBackPressed();
+        }
     }
 }
