@@ -11,6 +11,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import by.geekbrains.appnotes.App;
@@ -69,6 +71,7 @@ public class NoteFragment extends Fragment implements OnBackPressedListener {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        setActionBar(view);
         initViews(view);
         noteEntity = getArguments().getParcelable(NOTE_ARG_KEY);
         getInfoNote(noteEntity);
@@ -97,5 +100,11 @@ public class NoteFragment extends Fragment implements OnBackPressedListener {
         noteEntity.setTitle(title);
         noteEntity.setDescription(description);
         return noteEntity;
+    }
+
+    private void setActionBar(@NonNull View view) {
+        Toolbar toolbar = view.findViewById(R.id.fragment_note__toolbar);
+        ((AppCompatActivity) requireActivity()).setSupportActionBar(toolbar);
+        setHasOptionsMenu(true);
     }
 }

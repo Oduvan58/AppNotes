@@ -12,6 +12,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.NotificationChannelCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
@@ -74,6 +76,7 @@ public class NotesListFragment extends Fragment {
 
         addButton = view.findViewById(R.id.fragment_notes_list__add_note_button);
 
+        setActionBar(view);
         initRecycler(view);
 
         createNotificationChannels();
@@ -136,5 +139,11 @@ public class NotesListFragment extends Fragment {
             }
         });
         recyclerView.setAdapter(adapter);
+    }
+
+    private void setActionBar(@NonNull View view) {
+        Toolbar toolbar = view.findViewById(R.id.fragment_notes_list__toolbar);
+        ((AppCompatActivity) requireActivity()).setSupportActionBar(toolbar);
+        setHasOptionsMenu(true);
     }
 }
