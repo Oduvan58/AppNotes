@@ -8,9 +8,4 @@
         android:title="@string/text_add_note_menu"
         app:showAsAction="ifRoom" />
 
-    <item
-        android:id="@+id/menu_fragment_note_about_app"
-        android:title="@string/text_about_app_note_menu"
-        app:showAsAction="never" />
-
 </menu>

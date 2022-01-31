@@ -121,18 +121,10 @@ public class NoteFragment extends Fragment implements OnBackPressedListener {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.menu_fragment_note_about_app:
-                getActivity().getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.activity_main__about_fragment_container, new AboutFragment())
-                        .addToBackStack(null)
-                        .commit();
-                return true;
-            case R.id.menu_fragment_note_save_note:
-                App.get().noteRepository.saveNote(noteEntity.getId(), getNote());
-                controller.onSaveNote(noteEntity.getId(), noteEntity);
-                return true;
+        if (item.getItemId() == R.id.menu_fragment_note_save_note) {
+            App.get().noteRepository.saveNote(noteEntity.getId(), getNote());
+            controller.onSaveNote(noteEntity.getId(), noteEntity);
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }

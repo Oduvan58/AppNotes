@@ -21,4 +21,6 @@
     <string name="text_exit_note_menu">Выход</string>
     <string name="text_about_app_note_menu">О приложении</string>
     <string name="text_exit_app_toast">Приложение AppNotes закрыто</string>
+    <string name="text_delete_note_popup_menu">Удалить</string>
+    <string name="text_edit_note_popup_menu">Редактировать</string>
 </resources>

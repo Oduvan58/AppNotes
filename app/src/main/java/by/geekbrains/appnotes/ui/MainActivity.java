@@ -8,7 +8,6 @@ import androidx.fragment.app.FragmentManager;
 
 import by.geekbrains.appnotes.R;
 import by.geekbrains.appnotes.domain.NoteEntity;
-import by.geekbrains.appnotes.ui.details.AboutFragment;
 import by.geekbrains.appnotes.ui.details.NoteFragment;
 import by.geekbrains.appnotes.ui.list.NotesListFragment;
 

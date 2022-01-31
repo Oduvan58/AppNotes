@@ -2,7 +2,6 @@ package by.geekbrains.appnotes.ui.list;
 
 import android.app.Notification;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -16,6 +15,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.PopupMenu;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.NotificationChannelCompat;
 import androidx.core.app.NotificationCompat;
@@ -32,7 +32,6 @@ import by.geekbrains.appnotes.App;
 import by.geekbrains.appnotes.R;
 import by.geekbrains.appnotes.domain.NoteEntity;
 import by.geekbrains.appnotes.domain.NoteRepository;
-import by.geekbrains.appnotes.ui.MainActivity;
 import by.geekbrains.appnotes.ui.OnNoteListener;
 import by.geekbrains.appnotes.ui.details.AboutFragment;
 
@@ -116,6 +115,26 @@ public class NotesListFragment extends Fragment {
                         .setSmallIcon(R.drawable.ic_baseline_edit_note_24)
                         .build();
                 NotificationManagerCompat.from(App.get()).notify(NOTIFICATION_ID, notification);
+            }
+
+            @Override
+            public boolean onLongClickNote(NoteEntity noteEntity, View view1) {
+                PopupMenu popupMenu = new PopupMenu(getContext(), view1);
+                popupMenu.inflate(R.menu.popup_menu);
+                popupMenu.setOnMenuItemClickListener(item -> {
+                    switch (item.getItemId()) {
+                        case R.id.menu_popup_fragment_notes_list_edit_note:
+                            controller.showNoteDetail(noteEntity);
+                            return true;
+                        case R.id.menu_popup_fragment_notes_list_delete_note:
+                            noteRepository.deleteNote(noteEntity.getId());
+                            adapter.deleteNote(noteEntity.getId());
+                            return true;
+                    }
+                    return false;
+                });
+                popupMenu.show();
+                return true;
             }
 
             @Override

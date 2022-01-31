@@ -84,6 +84,4 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteViewHolder> {
     public void onBindViewHolder(@NonNull NoteViewHolder holder, int position) {
         holder.bind(getItem(position));
     }
-
-
 }
