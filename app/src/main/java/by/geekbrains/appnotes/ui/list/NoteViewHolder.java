@@ -32,6 +32,7 @@ public class NoteViewHolder extends RecyclerView.ViewHolder {
 
     public void bind(NoteEntity note) {
         itemView.setOnClickListener(v -> onNoteListener.onClickNote(note));
+        itemView.setOnLongClickListener(v -> onNoteListener.onLongClickNote(note, itemView));
         deleteImageView.setOnClickListener(v -> onNoteListener.onDeleteNote(note));
         onNoteListener.onAddNote(note);
 
