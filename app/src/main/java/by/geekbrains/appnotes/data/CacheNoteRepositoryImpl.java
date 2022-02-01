@@ -14,6 +14,16 @@ public class CacheNoteRepositoryImpl implements NoteRepository {
         cache.addAll(createNotesData());
     }
 
+    private static ArrayList<NoteEntity> createNotesData() {
+        final ArrayList<NoteEntity> noteEntities = new ArrayList<>();
+        noteEntities.add(new NoteEntity(
+                UUID.randomUUID().toString(),
+                "Тема",
+                "Описание"
+        ));
+        return noteEntities;
+    }
+
     @Override
     public ArrayList<NoteEntity> getNotes() {
         return new ArrayList<>(cache);
@@ -52,15 +62,5 @@ public class CacheNoteRepositoryImpl implements NoteRepository {
     @Override
     public void getDeletedNote(NoteEntity noteEntity) {
         cache.add(noteEntity);
-    }
-
-    private static ArrayList<NoteEntity> createNotesData() {
-        final ArrayList<NoteEntity> noteEntities = new ArrayList<>();
-        noteEntities.add(new NoteEntity(
-                UUID.randomUUID().toString(),
-                "Тема",
-                "Описание"
-        ));
-        return noteEntities;
     }
 }

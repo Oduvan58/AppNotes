@@ -18,7 +18,6 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteViewHolder> {
     private ArrayList<NoteEntity> data = new ArrayList<>();
     private OnNoteListener onNoteListener;
 
-
     public void setOnNoteListener(OnNoteListener onNoteListener) {
         this.onNoteListener = onNoteListener;
     }
