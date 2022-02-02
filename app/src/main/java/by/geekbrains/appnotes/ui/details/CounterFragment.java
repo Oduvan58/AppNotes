@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import by.geekbrains.appnotes.App;
 import by.geekbrains.appnotes.R;
 
 public class CounterFragment extends Fragment {
@@ -29,5 +30,7 @@ public class CounterFragment extends Fragment {
         titleCounterTextView = view.findViewById(R.id.fragment_counter__description_text_view);
         countTextView = view.findViewById(R.id.fragment_counter__count_text_view);
 
+        String counter = App.get().getCounter().getCount().toString();
+        countTextView.setText(counter);
     }
 }
