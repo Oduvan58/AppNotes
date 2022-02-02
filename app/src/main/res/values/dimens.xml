@@ -17,4 +17,6 @@
     <dimen name="size_image_view">36dp</dimen>
     <dimen name="margin_end_image_view">24dp</dimen>
     <dimen name="margin_bottom_save_note_button">24dp</dimen>
+    <dimen name="margin_top_count_counter_text_view">24dp</dimen>
+    <dimen name="text_size_count">52sp</dimen>
 </resources>

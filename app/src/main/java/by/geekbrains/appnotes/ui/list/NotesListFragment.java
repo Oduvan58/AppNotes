@@ -34,6 +34,7 @@ import by.geekbrains.appnotes.domain.NoteEntity;
 import by.geekbrains.appnotes.domain.NoteRepository;
 import by.geekbrains.appnotes.ui.OnNoteListener;
 import by.geekbrains.appnotes.ui.details.AboutFragment;
+import by.geekbrains.appnotes.ui.details.CounterFragment;
 
 public class NotesListFragment extends Fragment {
     private static final String CHANNEL_ID = "channel for test";
@@ -186,6 +187,13 @@ public class NotesListFragment extends Fragment {
                 getActivity().getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.activity_main__about_fragment_container, new AboutFragment())
+                        .addToBackStack(null)
+                        .commit();
+                return true;
+            case R.id.menu_fragment_notes_list_counter:
+                getActivity().getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.activity_main__counter_fragment_container, new CounterFragment())
                         .addToBackStack(null)
                         .commit();
                 return true;
