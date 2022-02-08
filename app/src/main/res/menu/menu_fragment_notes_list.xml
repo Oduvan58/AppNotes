@@ -8,6 +8,12 @@
         app:showAsAction="always" />
 
     <item
+        android:id="@+id/menu_fragment_notes_list_counter"
+        android:icon="@drawable/ic_baseline_event_repeat_24"
+        android:title="@string/text_counter_note_menu"
+        app:showAsAction="always" />
+
+    <item
         android:id="@+id/menu_fragment_notes_list_exit"
         android:icon="@drawable/ic_baseline_exit_to_app_24"
         android:title="@string/text_exit_note_menu"

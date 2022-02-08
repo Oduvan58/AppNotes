@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import by.geekbrains.appnotes.App;
 import by.geekbrains.appnotes.R;
 import by.geekbrains.appnotes.domain.NoteEntity;
 import by.geekbrains.appnotes.ui.details.NoteFragment;
@@ -27,6 +28,8 @@ public class MainActivity
                     .beginTransaction()
                     .replace(R.id.activity_main__main_fragment_container, notesListFragment, TAG_LIST_FRAGMENT)
                     .commit();
+
+            App.get().getCounter().setCount();
         }
     }
 

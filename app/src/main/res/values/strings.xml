@@ -18,9 +18,13 @@
     <string name="text_title_notification">Информационное сообщение</string>
     <string name="text_about_fragment_text_view">Приложение AppNotes разработано в рамках учебного проекта, студентом GeekBrains, Янчевским Павлом!</string>
     <string name="text_add_note_menu">Добавить</string>
+    <string name="text_counter_note_menu">Количество запусков приложения</string>
     <string name="text_exit_note_menu">Выход</string>
+    <string name="text_counter_fragment_count_text_view">0</string>
     <string name="text_about_app_note_menu">О приложении</string>
     <string name="text_exit_app_toast">Приложение AppNotes закрыто</string>
     <string name="text_delete_note_popup_menu">Удалить</string>
     <string name="text_edit_note_popup_menu">Редактировать</string>
+    <string name="text_counter_fragment_title_text_view">Количество запусков приложения:</string>
+
 </resources>
